@@ -163,9 +163,27 @@ createApp({
                             message: 'OK!!',
                             status: 'received'
                         }
-                    ],
+                    ],  
                 }
-            ]
+            ],
+            activeIndex: 0,
+        }
+    },
+    methods: {
+
+        //FUNZIONE CHE MI SELEZIONA L'UTENTE CLICCATO 
+        contactClicked(clickedIndex) {
+
+            for (let i = 0; i < this.contacts.length; i++) {
+                this.contacts[i].visible = true;
+            }
+
+            this.activeIndex = clickedIndex;
+            if (!this.activeIndex === clickedIndex) {
+                this.contacts[clickedIndex].visible = true;   
+            } else {
+                this.contacts[clickedIndex].visible = false; 
+            }
         }
     }
 

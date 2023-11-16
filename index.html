@@ -73,14 +73,14 @@
                     <!-- CONTACTS-LIST -->
                     <ul class="contacts-list">
 
-                        <li v-for = "(profile, index) in contacts"  class="card-chat flex">
+                        <li v-for = "(profile, index) in contacts" :key="index" @click.stop="contactClicked(index)" :class="{'card-chat-selected': profile.visible === false } " class="card-chat flex">
                             <div class="profile-card flex">
                                 <button class="btn-profile">
                                     <img class="profile" :src="`img/avatar${profile.avatar}.jpg`" alt="">
                                 </button>
                                 <div class="profile-text">
                                     <h4>{{profile.name}}</h4>
-                                    <p>Ultimo messaggio...</p>  <!--se è di piu è un prblema-->
+                                    <p>Ultimo messaggio...</p>  
                                 </div>
                             </div>
                             <div class="time">16:15</div>
@@ -131,8 +131,9 @@
 
                     <!-- MAIN -->  
                     <main class="chat-main">
-                        <div class="message-main flex">
-                            <div class="message send relative">
+
+                        <div v-for = "(message, index) in contacts[activeIndex].messages" :key="index"  class="message-main flex">
+                            <div class="message relative" :class ="contacts[activeIndex].messages[index].status === 'sent' ? 'send' : 'recieved'">  <!--risolto con :class ed è ottimale, posso tulizzare index se non è un figlio?-->
                                 <div class="angle">
                                     <i class="fa-solid fa-angle-down"></i>  
                                 </div>
@@ -141,155 +142,12 @@
                                     <p>Cancella messaggio</p> 
                                 </div>
                                 <p>
-                                    Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia et veniam placeat quas doloribus! Libero ipsum odio blanditiis sint cupiditate, itaque, sunt iusto molestiae, velit voluptates odit fugiat tenetur quisquam.
+                                    {{message.message}}
                                 </p>
                                 <div class="time">16:50</div>
                             </div>
                         </div>
-
-                        <div class="message-main flex">
-                            <div class="message recieved relative">
-                                <div class="angle">
-                                    <i class="fa-solid fa-angle-down"></i>  
-                                </div>
-                                <div class="info-message">
-                                    <p>Info messaggio</p>
-                                    <p>Cancella messaggio</p> 
-                                </div>
-                                <p>
-                                    Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia et veniam placeat quas doloribus! Libero ipsum odio blanditiis sint cupiditate, itaque, sunt iusto molestiae, velit voluptates odit fugiat tenetur quisquam.
-                                </p>
-                                <div class="time">16:50</div>
-                            </div>
-                        </div>
-
-                        <div class="message-main flex">
-                            <div class="message send relative">
-                                <div class="angle">
-                                    <i class="fa-solid fa-angle-down"></i>  
-                                </div>
-                                <div class="info-message">
-                                    <p>Info messaggio</p>
-                                    <p>Cancella messaggio</p> 
-                                </div>
-                                <p>
-                                    Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia et veniam placeat quas doloribus! Libero ipsum odio blanditiis sint cupiditate, itaque, sunt iusto molestiae, velit voluptates odit fugiat tenetur quisquam.
-                                </p>
-                                <div class="time">16:50</div>
-                            </div>
-                        </div>
-
-                        <div class="message-main flex">
-                            <div class="message recieved relative">
-                                <div class="angle">  <!-- era meglio un button -->
-                                    <i class="fa-solid fa-angle-down"></i>  
-                                </div>
-                                <div class="info-message">
-                                    <p>Info messaggio</p>
-                                    <p>Cancella messaggio</p> 
-                                </div>
-                                <p>
-                                    Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia et veniam placeat quas doloribus! Libero ipsum odio blanditiis sint cupiditate, itaque, sunt iusto molestiae, velit voluptates odit fugiat tenetur quisquam.
-                                </p>
-                                <div class="time">16:50</div>
-                            </div>
-                        </div>
-
-                        <div class="message-main flex">
-                            <div class="message send relative">
-                                <div class="angle">
-                                    <i class="fa-solid fa-angle-down"></i>  
-                                </div>
-                                <div class="info-message">
-                                    <p>Info messaggio</p>
-                                    <p>Cancella messaggio</p> 
-                                </div>
-                                <p>
-                                    Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia et veniam placeat quas doloribus! Libero ipsum odio blanditiis sint cupiditate, itaque, sunt iusto molestiae, velit voluptates odit fugiat tenetur quisquam.
-                                </p>
-                                <div class="time">16:50</div>
-                            </div>
-                        </div>
-
-                        <div class="message-main flex">
-                            <div class="message recieved relative">
-                                <div class="angle">
-                                    <i class="fa-solid fa-angle-down"></i>  
-                                </div>
-                                <div class="info-message">
-                                    <p>Info messaggio</p>
-                                    <p>Cancella messaggio</p> 
-                                </div>
-                                <p>
-                                    Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia et veniam placeat quas doloribus! Libero ipsum odio blanditiis sint cupiditate, itaque, sunt iusto molestiae, velit voluptates odit fugiat tenetur quisquam.
-                                </p>
-                                <div class="time">16:50</div>
-                            </div>
-                        </div>
-
-                        <div class="message-main flex">
-                            <div class="message send relative">
-                                <div class="angle">
-                                    <i class="fa-solid fa-angle-down"></i>  
-                                </div>
-                                <div class="info-message">
-                                    <p>Info messaggio</p>
-                                    <p>Cancella messaggio</p> 
-                                </div>
-                                <p>
-                                    Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia et veniam placeat quas doloribus! Libero ipsum odio blanditiis sint cupiditate, itaque, sunt iusto molestiae, velit voluptates odit fugiat tenetur quisquam.
-                                </p>
-                                <div class="time">16:50</div>
-                            </div>
-                        </div>
-
-                        <div class="message-main flex">
-                            <div class="message recieved relative">
-                                <div class="angle">
-                                    <i class="fa-solid fa-angle-down"></i>  
-                                </div>
-                                <div class="info-message">
-                                    <p>Info messaggio</p>
-                                    <p>Cancella messaggio</p> 
-                                </div>
-                                <p>
-                                    Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia et veniam placeat quas doloribus! Libero ipsum odio blanditiis sint cupiditate, itaque, sunt iusto molestiae, velit voluptates odit fugiat tenetur quisquam.
-                                </p>
-                                <div class="time">16:50</div>
-                            </div>
-                        </div>
-
-                        <div class="message-main flex">
-                            <div class="message send relative">
-                                <div class="angle">
-                                    <i class="fa-solid fa-angle-down"></i>  
-                                </div>
-                                <div class="info-message">
-                                    <p>Info messaggio</p>
-                                    <p>Cancella messaggio</p> 
-                                </div>
-                                <p>
-                                    Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia et veniam placeat quas doloribus! Libero ipsum odio blanditiis sint cupiditate, itaque, sunt iusto molestiae, velit voluptates odit fugiat tenetur quisquam.
-                                </p>
-                                <div class="time">16:50</div>
-                            </div>
-                        </div>
-
-                        <div class="message-main flex">
-                            <div class="message recieved relative">
-                                <div class="angle">
-                                    <i class="fa-solid fa-angle-down"></i>  
-                                </div>
-                                <div class="info-message">
-                                    <p>Info messaggio</p>
-                                    <p>Cancella messaggio</p> 
-                                </div>
-                                <p>
-                                    Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia et veniam placeat quas doloribus! Libero ipsum odio blanditiis sint cupiditate, itaque, sunt iusto molestiae, velit voluptates odit fugiat tenetur quisquam.
-                                </p>
-                                <div class="time">16:50</div>
-                            </div>
-                        </div>                    
+                 
                     </main>
 
                     <!-- FOOTER -->
