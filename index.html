@@ -160,7 +160,7 @@
                             </button>
                             <form class="text">
                                 <label for="text"></label>
-                                <textarea name="text" id="text" placeholder="Scrivi un messaggio"></textarea>
+                                <textarea name="text" id="text" placeholder="Scrivi un messaggio" v-model.trim="newMessage" @keypress.enter="sendNewMessage"></textarea>
                             </form>
                         </div>
 

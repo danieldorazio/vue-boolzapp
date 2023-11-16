@@ -3,6 +3,9 @@ const { createApp } = Vue;
 createApp({
     data() {
         return {
+            activeIndex: 0,
+            newMessage: "",
+
             contacts: [
                 {
                     name: 'Michele',
@@ -165,8 +168,7 @@ createApp({
                         }
                     ],  
                 }
-            ],
-            activeIndex: 0,
+            ],    
         }
     },
     methods: {
@@ -184,7 +186,33 @@ createApp({
             } else {
                 this.contacts[clickedIndex].visible = false; 
             }
-        }
+        },
+        //FUNZIONE CHE PRENDE PRENDE NEWMESSAGE E LO INSERISCE ALL'INTERNO DEI MESSAGGI DEI CONTACTS
+        sendNewMessage() {
+            if(this.newMessage !== "") {
+                this.contacts[this.activeIndex].messages.push({
+                    data: 'da definire',
+                    message: this.newMessage,
+                    status: 'sent'
+                });
+            this.newMessage = "";
+            this.replyNewMessage();
+            }
+            
+        },
+
+        replyNewMessage() {
+            setTimeout(() => {
+                    this.contacts[this.activeIndex].messages.push({
+                    data: 'da definire',
+                    message: 'Ok',
+                    status:'received'
+                }); 
+            }, 1000);
+        },
+            
+        
     }
+
 
 }).mount("#app");
