@@ -1,0 +1,33 @@
+@media (prefers-color-scheme: dark) {
+    body {
+        color: white;
+    }
+    :root {
+        /*color*/
+    --color-green-exit:#009688;
+    --color-gray-exit: #3e4d4c;
+    --color-gray-header: #202c33;
+    --color-gray-icons: #aebac1;
+    --color-notification:#182229;
+    --color-notification-btn:#8edafc;
+    --color-search-exit:#111b21;
+    --color-search:#202c33;
+    --color-contacts:#111b21;
+    --color-contacts-hover:#2a3942;
+    --color-send-message: #005c4b;
+    --color-recieved-message:#202c33;
+    --color-footer:#202c33;
+    --color-textarea-footer:#2a3942;
+    --color-gray-icons-footer:#6b7376;
+    --color-microphone-hover: red;
+    --glow-color: #2a3942;
+    /***********************************/
+    --color-white-button:#f2fbff;
+    --color-white: #ffffff;  /*da vedere*/
+    --color-gray-allert:#517789;
+    }
+
+    .chat {
+        background-image: url(../img/mine-dark.jpg);
+    }
+}

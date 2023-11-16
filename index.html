@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boolzapp Layout</title>
+
+    <!-- VUE -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <!-- ICONS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!--CSS-->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dark.css">
+
+</head>
+<body>
+    <div id="app">
+        <main class="wrapper flex">
+            <div class="container-large flex">
+
+                <!---------------
+                -    CONTACTS   -
+                ----------------->
+                <div id="contacts">
+
+                    <!-- HEADER -->
+                    <header class="header flex">
+                        <button class="btn-profile">
+                            <img class="profile" src="img/avatar_io.jpg" alt="">
+                        </button>
+                        <ul class="icons-list flex">
+                            <li>
+                                <button class="icons glowing-btn">
+                                    <i class="fa-solid fa-circle-notch"></i>
+                                </button>
+                            </li>
+                            <li>
+                                <button class="icons glowing-btn">
+                                    <i class="fa-solid fa-message"></i>
+                                </button>
+                            </li>
+                            <li>
+                                <button class="icons glowing-btn">
+                                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                                </button>
+                            </li>
+                        </ul>
+                    </header>
+
+                    <!-- NOTIFICATION -->
+                    <div class="notification flex">
+                        <button class="btn-profile allert">
+                            <i class="fa-solid fa-bell-slash"></i>
+                        </button>
+                        <div class="allert-text">
+                            <p>Ricevi notifiche di nuovi messaggi</p>
+                            <a href="">Attiva notifiche desktop</a>
+                        </div>
+                    </div>
+
+                    <!-- SEARCH CHAT -->
+                    <form class="search-chat flex">
+                        <div class="search flex">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <label for="mySearch"></label>
+                            <input type="search" id="mySearch" name="mySearch" placeholder="Cerca o inizia una nuova chat" />
+                        </div>
+                    </form>
+
+                    <!-- CONTACTS-LIST -->
+                    <ul class="contacts-list">
+
+                        <li v-for = "(profile, index) in contacts"  class="card-chat flex">
+                            <div class="profile-card flex">
+                                <button class="btn-profile">
+                                    <img class="profile" :src="`img/avatar${profile.avatar}.jpg`" alt="">
+                                </button>
+                                <div class="profile-text">
+                                    <h4>{{profile.name}}</h4>
+                                    <p>Ultimo messaggio...</p>  <!--se è di piu è un prblema-->
+                                </div>
+                            </div>
+                            <div class="time">16:15</div>
+                        </li>
+                    </ul>
+
+
+                </div>
+
+                <!---------------
+                -       CHAT    -
+                ----------------->
+                <div id="chat" class="chat">
+
+                    <!-- HEADER -->
+                    <header class="header flex">
+
+                        <!-- profile-card -->
+                        <div class="profile-card flex">
+                            <button class="btn-profile">
+                                <img class="profile" src="img/avatar_1.jpg" alt="">
+                            </button>
+                            <div class="profile-text">
+                                <h4>Michele</h4>
+                                <p>Ultimo accesso oggi alle 16:26</p>  
+                            </div>
+                        </div>
+
+                        <!-- ICONS-LIST -->
+                        <ul class="icons-list flex">
+                            <li>
+                                <button class="icons glowing-btn">
+                                    <i class="fa-solid fa-circle-notch"></i>
+                                </button>
+                            </li>
+                            <li>
+                                <button class="icons glowing-btn">
+                                    <i class="fa-solid fa-paperclip"></i>
+                                </button>
+                            </li>
+                            <li>
+                                <button class="icons glowing-btn">
+                                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                                </button>
+                            </li>
+                        </ul>
+                    </header>
+
+                    <!-- MAIN -->  
+                    <main class="chat-main">
+                        <div class="message-main flex">
+                            <div class="message send relative">
+                                <div class="angle">
+                                    <i class="fa-solid fa-angle-down"></i>  
+                                </div>
+                                <div class="info-message">
+                                    <p>Info messaggio</p>
+                                    <p>Cancella messaggio</p> 
+                                </div>
+                                <p>
+                                    Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia et veniam placeat quas doloribus! Libero ipsum odio blanditiis sint cupiditate, itaque, sunt iusto molestiae, velit voluptates odit fugiat tenetur quisquam.
+                                </p>
+                                <div class="time">16:50</div>
+                            </div>
+                        </div>
+
+                        <div class="message-main flex">
+                            <div class="message recieved relative">
+                                <div class="angle">
+                                    <i class="fa-solid fa-angle-down"></i>  
+                                </div>
+                                <div class="info-message">
+                                    <p>Info messaggio</p>
+                                    <p>Cancella messaggio</p> 
+                                </div>
+                                <p>
+                                    Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia et veniam placeat quas doloribus! Libero ipsum odio blanditiis sint cupiditate, itaque, sunt iusto molestiae, velit voluptates odit fugiat tenetur quisquam.
+                                </p>
+                                <div class="time">16:50</div>
+                            </div>
+                        </div>
+
+                        <div class="message-main flex">
+                            <div class="message send relative">
+                                <div class="angle">
+                                    <i class="fa-solid fa-angle-down"></i>  
+                                </div>
+                                <div class="info-message">
+                                    <p>Info messaggio</p>
+                                    <p>Cancella messaggio</p> 
+                                </div>
+                                <p>
+                                    Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia et veniam placeat quas doloribus! Libero ipsum odio blanditiis sint cupiditate, itaque, sunt iusto molestiae, velit voluptates odit fugiat tenetur quisquam.
+                                </p>
+                                <div class="time">16:50</div>
+                            </div>
+                        </div>
+
+                        <div class="message-main flex">
+                            <div class="message recieved relative">
+                                <div class="angle">  <!-- era meglio un button -->
+                                    <i class="fa-solid fa-angle-down"></i>  
+                                </div>
+                                <div class="info-message">
+                                    <p>Info messaggio</p>
+                                    <p>Cancella messaggio</p> 
+                                </div>
+                                <p>
+                                    Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia et veniam placeat quas doloribus! Libero ipsum odio blanditiis sint cupiditate, itaque, sunt iusto molestiae, velit voluptates odit fugiat tenetur quisquam.
+                                </p>
+                                <div class="time">16:50</div>
+                            </div>
+                        </div>
+
+                        <div class="message-main flex">
+                            <div class="message send relative">
+                                <div class="angle">
+                                    <i class="fa-solid fa-angle-down"></i>  
+                                </div>
+                                <div class="info-message">
+                                    <p>Info messaggio</p>
+                                    <p>Cancella messaggio</p> 
+                                </div>
+                                <p>
+                                    Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia et veniam placeat quas doloribus! Libero ipsum odio blanditiis sint cupiditate, itaque, sunt iusto molestiae, velit voluptates odit fugiat tenetur quisquam.
+                                </p>
+                                <div class="time">16:50</div>
+                            </div>
+                        </div>
+
+                        <div class="message-main flex">
+                            <div class="message recieved relative">
+                                <div class="angle">
+                                    <i class="fa-solid fa-angle-down"></i>  
+                                </div>
+                                <div class="info-message">
+                                    <p>Info messaggio</p>
+                                    <p>Cancella messaggio</p> 
+                                </div>
+                                <p>
+                                    Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia et veniam placeat quas doloribus! Libero ipsum odio blanditiis sint cupiditate, itaque, sunt iusto molestiae, velit voluptates odit fugiat tenetur quisquam.
+                                </p>
+                                <div class="time">16:50</div>
+                            </div>
+                        </div>
+
+                        <div class="message-main flex">
+                            <div class="message send relative">
+                                <div class="angle">
+                                    <i class="fa-solid fa-angle-down"></i>  
+                                </div>
+                                <div class="info-message">
+                                    <p>Info messaggio</p>
+                                    <p>Cancella messaggio</p> 
+                                </div>
+                                <p>
+                                    Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia et veniam placeat quas doloribus! Libero ipsum odio blanditiis sint cupiditate, itaque, sunt iusto molestiae, velit voluptates odit fugiat tenetur quisquam.
+                                </p>
+                                <div class="time">16:50</div>
+                            </div>
+                        </div>
+
+                        <div class="message-main flex">
+                            <div class="message recieved relative">
+                                <div class="angle">
+                                    <i class="fa-solid fa-angle-down"></i>  
+                                </div>
+                                <div class="info-message">
+                                    <p>Info messaggio</p>
+                                    <p>Cancella messaggio</p> 
+                                </div>
+                                <p>
+                                    Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia et veniam placeat quas doloribus! Libero ipsum odio blanditiis sint cupiditate, itaque, sunt iusto molestiae, velit voluptates odit fugiat tenetur quisquam.
+                                </p>
+                                <div class="time">16:50</div>
+                            </div>
+                        </div>
+
+                        <div class="message-main flex">
+                            <div class="message send relative">
+                                <div class="angle">
+                                    <i class="fa-solid fa-angle-down"></i>  
+                                </div>
+                                <div class="info-message">
+                                    <p>Info messaggio</p>
+                                    <p>Cancella messaggio</p> 
+                                </div>
+                                <p>
+                                    Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia et veniam placeat quas doloribus! Libero ipsum odio blanditiis sint cupiditate, itaque, sunt iusto molestiae, velit voluptates odit fugiat tenetur quisquam.
+                                </p>
+                                <div class="time">16:50</div>
+                            </div>
+                        </div>
+
+                        <div class="message-main flex">
+                            <div class="message recieved relative">
+                                <div class="angle">
+                                    <i class="fa-solid fa-angle-down"></i>  
+                                </div>
+                                <div class="info-message">
+                                    <p>Info messaggio</p>
+                                    <p>Cancella messaggio</p> 
+                                </div>
+                                <p>
+                                    Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia et veniam placeat quas doloribus! Libero ipsum odio blanditiis sint cupiditate, itaque, sunt iusto molestiae, velit voluptates odit fugiat tenetur quisquam.
+                                </p>
+                                <div class="time">16:50</div>
+                            </div>
+                        </div>                    
+                    </main>
+
+                    <!-- FOOTER -->
+                    <footer  class="footer flex relative">
+
+                        <!-- FOOTER-TEXT -->
+                        <div class="footer-text flex">
+                            <button class='glowing-btn icons'>
+                                <i class="fa-regular fa-face-smile"></i>
+                            </button>
+                            <form class="text">
+                                <label for="text"></label>
+                                <textarea name="text" id="text" placeholder="Scrivi un messaggio"></textarea>
+                            </form>
+                        </div>
+
+                        <!-- FOOTER-MICROPHONO -->
+                        <div class="footer-registration">
+                            <details>
+                                <summary>
+                                </summary>
+                                <div class="det-main flex">
+                                    <button class="icons">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                    <div>
+                                        timer 
+                                    </div>
+                                    <div>..........</div>
+                                    <button class="icons">
+                                        <i class="fa-solid fa-pause"></i>
+                                    </button>
+                                    <button class="icons">
+                                        <i class="fa-regular fa-paper-plane"></i>
+                                    </button>
+                                </div>
+                            </details>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
