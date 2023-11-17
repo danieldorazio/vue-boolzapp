@@ -158,13 +158,13 @@
 
                         <!-- FOOTER-TEXT -->
                         <div class="footer-text flex">
-                            <div @click.stop="toggoleValueEmoji">
-                                <div id="emoji" :value="valueEmoji" class="emoji-container">
+                            <div>  <!--@click.stop="toggoleValueEmoji"-->
+                                <div id="emoji" :value ="valueEmoji" :class="valueEmoji ? 'd-inline' :'d-none'" class="emoji-container">
                                     <ul class="emoji-list">
                                         <li v-for ="(emoji, index) in emoji">{{emoji}}</li>
                                     </ul>
                                 </div>
-                                <button id="emoji-btn" class='glowing-btn icons' @click="addShowClass">
+                                <button id="emoji-btn" class='glowing-btn icons' @click.stop="toggoleValueEmoji"> <!--@click="addShowClass"-->
                                     <i class="fa-regular fa-face-smile"></i>
                                 </button>
                             </div>

@@ -13,7 +13,7 @@ createApp({
             activeIndex: 0,
             newMessage: "",
             searchInput: "", 
-            valueEmoji: true,
+            valueEmoji: false,
 
             contacts: [
                 {
@@ -273,16 +273,16 @@ createApp({
         },
 
         //FUNZIONE CHE MI METTE O TOGLIE LA CLASSE D-NONE ALL'ID EMOJI
-        addShowClass() {
-            const emoji = document.getElementById("emoji");
-                emoji.classList.remove("d-none");
-                emoji.classList.remove("d-inline");
-            if (this.valueEmoji) {
-                emoji.classList.add("d-inline")
-            } else{
-                emoji.classList.add("d-none")
-            }   
-        },
+        // addShowClass() {
+        //     const emoji = document.getElementById("emoji");
+        //         emoji.classList.remove("d-none");
+        //         emoji.classList.remove("d-inline");
+        //     if (this.valueEmoji) {
+        //         emoji.classList.add("d-inline")
+        //     } else{
+        //         emoji.classList.add("d-none")
+        //     }   
+        // },
 
         //FUNZIONE CHE ALTERNA IL VALOREEMOJI
         toggoleValueEmoji() {
