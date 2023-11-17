@@ -1,5 +1,7 @@
 const { createApp } = Vue;
 
+const dt = luxon.dateTime;
+
 createApp({
     data() {
         return {
@@ -226,8 +228,12 @@ createApp({
                 }
             });
         },
-            
-        
+
+        //FUNZIONCHE CHE MI CANCELLA DALL'ARRAY DI MESSAGES IL MESSAGGIO OGGETTO CON MESSAGEINDEX 
+        deleteMessage(messageIndex) {
+            console.log(messageIndex);
+            this.contacts[this.activeIndex].messages.splice(messageIndex, 1);
+        },   
     }
 
 
