@@ -66,17 +66,17 @@
                         <div class="search flex">
                             <i class="fa-solid fa-magnifying-glass"></i>
                             <label for="mySearch"></label>
-                            <input type="search" id="mySearch" name="mySearch" placeholder="Cerca o inizia una nuova chat" />
+                            <input type="search" id="mySearch" name="mySearch" placeholder="Cerca o inizia una nuova chat" v-model="searchInput" @keyup="searchPerson"/>
                         </div>
                     </form>
 
                     <!-- CONTACTS-LIST -->
                     <ul class="contacts-list">
 
-                        <li v-for = "(profile, index) in contacts" :key="index" @click.stop="contactClicked(index)" :class="{'card-chat-selected': profile.visible === false } " class="card-chat flex">
+                        <li v-for = "(profile, index) in contacts" :key="index" @click.stop="contactClicked(index)" :class="{'card-chat-selected': activeIndex === index } " class="card-chat flex" v-show="profile.visible" >
                             <div class="profile-card flex">
                                 <button class="btn-profile">
-                                    <img class="profile" :src="`img/avatar${profile.avatar}.jpg`" alt="">
+                                    <img class="profile" :src="`img/avatar${profile.avatar}.jpg`" :alt="`Avatar ${profile.name}`">
                                 </button>
                                 <div class="profile-text">
                                     <h4>{{profile.name}}</h4>
@@ -101,10 +101,10 @@
                         <!-- profile-card -->
                         <div class="profile-card flex">
                             <button class="btn-profile">
-                                <img class="profile" src="img/avatar_1.jpg" alt="">
+                                <img class="profile" :src="`img/avatar${contacts[activeIndex].avatar}.jpg`" alt="">
                             </button>
                             <div class="profile-text">
-                                <h4>Michele</h4>
+                                <h4>{{contacts[activeIndex].name}}</h4>
                                 <p>Ultimo accesso oggi alle 16:26</p>  
                             </div>
                         </div>

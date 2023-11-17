@@ -289,7 +289,6 @@ container-large   *
     background-color: var(--color-contacts-hover);
 }
 
-
 .card-chat.flex {
     align-items: center;
     justify-content: space-between;

@@ -5,6 +5,7 @@ createApp({
         return {
             activeIndex: 0,
             newMessage: "",
+            searchInput: "", 
 
             contacts: [
                 {
@@ -176,16 +177,17 @@ createApp({
         //FUNZIONE CHE MI SELEZIONA L'UTENTE CLICCATO 
         contactClicked(clickedIndex) {
 
-            for (let i = 0; i < this.contacts.length; i++) {
-                this.contacts[i].visible = true;
-            }
+            // for (let i = 0; i < this.contacts.length; i++) {
+            //     this.contacts[i].visible = true;
+            // }
 
+            // this.activeIndex = clickedIndex;
+            // if (!this.activeIndex === clickedIndex) {
+            //     this.contacts[clickedIndex].visible = true;   
+            // } else {
+            //     this.contacts[clickedIndex].visible = false; 
+            // }
             this.activeIndex = clickedIndex;
-            if (!this.activeIndex === clickedIndex) {
-                this.contacts[clickedIndex].visible = true;   
-            } else {
-                this.contacts[clickedIndex].visible = false; 
-            }
         },
         //FUNZIONE CHE PRENDE PRENDE NEWMESSAGE E LO INSERISCE ALL'INTERNO DEI MESSAGGI DEI CONTACTS
         sendNewMessage() {
@@ -201,6 +203,7 @@ createApp({
             
         },
 
+        //FUNZIONE CHE CREA UN MESSAGGIO OGGETTO DI RISPOSTA DOPO 1000 ms 
         replyNewMessage() {
             setTimeout(() => {
                     this.contacts[this.activeIndex].messages.push({
@@ -209,6 +212,19 @@ createApp({
                     status:'received'
                 }); 
             }, 1000);
+        },
+
+        //FUNZIONE CHE CONTROLLA SE LA STRINGA IN INPUT NE SEARCHINPUT SIA CONTENUTA ALL'INTERNOO DEL NEL DOME DELLE PERSONE  
+        searchPerson () {
+            let search = this.searchInput.toLowerCase();
+            this.contacts.forEach(personObj => {
+
+                if (personObj.name.toLowerCase().includes(search)) {
+                    personObj.visible = true;
+                } else {
+                    personObj.visible = false;
+                }
+            });
         },
             
         
