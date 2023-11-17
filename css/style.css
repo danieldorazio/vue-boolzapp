@@ -16,6 +16,7 @@
 --color-send-message:#d5f9ba;
 --color-recieved-message:#ffffff;
 --color-footer:#f3eeea;
+--color-footer-emoji: #f0f2f5;
 --color-textarea-footer:#ffffff;
 --color-gray-icons-footer:#6b7376;
 --color-microphone-hover: red;
@@ -136,6 +137,13 @@ body {
     opacity: 1;
   }
 
+.d-none {
+    display: none;
+}
+
+.d-inline {
+    display: inline-block !important;
+}
   
 /********************
          wrapper    *
@@ -485,6 +493,26 @@ container-large   *
 /* FOOTER-TEXT */
 .footer-text {
     width: 100%;
+    position: relative;
+}
+
+.footer-text .emoji-container {
+    position: absolute;
+    z-index: 9999;
+    height: 200px;
+    bottom: var(--footer-new-message);
+    background-color: var(--color-footer-emoji);
+    display: none;
+}
+
+.footer-text .emoji-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    cursor: pointer;
+    overflow-y: auto;
+    height: 200px;
+    margin-left: 20px;
 }
 
 .footer-text .text {
@@ -573,6 +601,15 @@ footer:has(details[open]) .footer-text button.glowing-btn {
     .chat-main .message {
         margin: .5rem 1.5rem;
     }
+
+    .footer-text .emoji-container {
+        height: 70px;
+    }
+    
+    .footer-text .emoji-list {
+        height: 70px;
+        
+    }
 }
 
 /*mobile*/
@@ -601,6 +638,14 @@ footer:has(details[open]) .footer-text button.glowing-btn {
     #chat .footer-text .text {
         width: 90%;
     }   
+
+    .footer-text .emoji-container {
+        display: none;
+    }
+    
+    .footer-text .emoji-list {
+       display: none;  
+    }
 }
 
 

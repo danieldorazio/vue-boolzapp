@@ -158,9 +158,16 @@
 
                         <!-- FOOTER-TEXT -->
                         <div class="footer-text flex">
-                            <button class='glowing-btn icons'>
-                                <i class="fa-regular fa-face-smile"></i>
-                            </button>
+                            <div @click.stop="toggoleValueEmoji">
+                                <div id="emoji" :value="valueEmoji" class="emoji-container">
+                                    <ul class="emoji-list">
+                                        <li v-for ="(emoji, index) in emoji">{{emoji}}</li>
+                                    </ul>
+                                </div>
+                                <button id="emoji-btn" class='glowing-btn icons' @click="addShowClass">
+                                    <i class="fa-regular fa-face-smile"></i>
+                                </button>
+                            </div>
                             <form class="text">
                                 <label for="text"></label>
                                 <textarea name="text" id="text" placeholder="Scrivi un messaggio" v-model.trim="newMessage" @keypress.enter="sendNewMessage"></textarea>
