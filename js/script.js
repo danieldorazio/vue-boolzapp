@@ -234,14 +234,27 @@ createApp({
             });
         },
 
-        //FUNZIONCHE CHE MI CANCELLA DALL'ARRAY DI MESSAGES IL MESSAGGIO OGGETTO CON MESSAGEINDEX 
-        deleteMessage(messageIndex) {
-            this.contacts[this.activeIndex].messages.splice(messageIndex, 1);
+        //FUNZIONCHE CHE MI CANCELLA DALL'ARRAY DI MESSAGES IL MESSAGGIO OGGETTO CON MESSAGEINDEX E AGGIUNGE AL SUO POSTO UN MESSAGGIO DI CANCELLAZIONE 
+        deleteMessage(message, messageIndex) {
+
+            let alertDeleted = {
+                date: dtNow(),
+                message: 'messaggio eliminato',
+            };
+
+            if (message.status === 'sent') {
+               alertDeleted.status = 'sent' 
+            } else {
+                alertDeleted.status = 'received'
+            };
+    
+            this.contacts[this.activeIndex].messages.splice(messageIndex, 1, alertDeleted);
+            
         },   
 
         //FUNZIONE CHE PRENDE LA STRINGA DATA IN INGRESSO E DIVIDE ALLO SPAZIO RESTITUENDO SOLO L'ORARIO
-        dateToHourMin(index){
-                let messageDate = this.contacts[this.activeIndex].messages[index].date;
+        dateToHourMin(index1, index2){
+                let messageDate = this.contacts[index1].messages[index2].date;
 
                 const dateTime = dt.fromFormat(messageDate, 'dd/MM/yyyy HH:mm:ss').toFormat("HH:mm");
 

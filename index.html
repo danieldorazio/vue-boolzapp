@@ -86,7 +86,7 @@
                                     <p>{{showLastMessage(profile)}}</p>  
                                 </div>
                             </div>
-                            <div class="time">{{profile.messages[profile.messages.length - 1].date}}</div> <!--dateToHourMin(profile.messages.length - 1-->
+                            <div class="time">{{dateToHourMin(index, profile.messages.length - 1)}}</div> <!--{{profile.messages[profile.messages.length - 1].date}}-->
                         </li>
                     </ul>
 
@@ -108,7 +108,7 @@
                             </button>
                             <div class="profile-text">
                                 <h4>{{contacts[activeIndex].name}}</h4>
-                                <p>{{`Ultimo accesso oggi alle ${dateToHourMin(contacts[activeIndex].messages.length - 1)}`}} </p>  <!--Ultimo accesso oggi alle 16:26-->
+                                <p>{{`Ultimo accesso oggi alle ${dateToHourMin(activeIndex, contacts[activeIndex].messages.length - 1)}`}} </p>  
                             </div>
                         </div>
 
@@ -136,18 +136,18 @@
                     <main class="chat-main">
 
                         <div v-for = "(message, index) in contacts[activeIndex].messages" :key="index"  class="message-main flex">
-                            <div class="message relative" :class ="contacts[activeIndex].messages[index].status === 'sent' ? 'send' : 'recieved'">  <!--risolto con :class ed è ottimale, posso tulizzare index se non è un figlio?-->
+                            <div class="message relative" :class ="contacts[activeIndex].messages[index].status === 'sent' ? 'send' : 'recieved'">  
                                 <div class="angle">
                                     <i class="fa-solid fa-angle-down angle-box"></i>  
                                 </div>
                                 <div class="info-message">
                                     <p>Info messaggio</p>
-                                    <p @click.stop="deleteMessage(index)">Cancella messaggio</p> 
+                                    <p @click.stop="deleteMessage(message, index)">Cancella messaggio</p> 
                                 </div>
                                 <p>
                                     {{message.message}}
                                 </p>
-                                <div class="time">{{dateToHourMin(index)}}</div>
+                                <div class="time">{{dateToHourMin(activeIndex, index)}}</div>
                             </div>
                         </div>
                  
