@@ -1,7 +1,12 @@
 const { createApp } = Vue;
 
-const dt = luxon.dateTime;
+// LUXON
+const dt = luxon.DateTime;
+//FUNZIONE CHE MI DETERMINA L'ORARIO ATTUALE 
+const dtNow = () =>(dt.now().toFormat("dd'/'MM'/'yyyy HH':'mm':'ss"));
 
+
+/*************************************************************************/
 createApp({
     data() {
         return {
@@ -195,7 +200,7 @@ createApp({
         sendNewMessage() {
             if(this.newMessage !== "") {
                 this.contacts[this.activeIndex].messages.push({
-                    data: 'da definire',
+                    date: dtNow(),
                     message: this.newMessage,
                     status: 'sent'
                 });
@@ -209,7 +214,7 @@ createApp({
         replyNewMessage() {
             setTimeout(() => {
                     this.contacts[this.activeIndex].messages.push({
-                    data: 'da definire',
+                    date: dtNow(),
                     message: 'Ok',
                     status:'received'
                 }); 
@@ -231,9 +236,24 @@ createApp({
 
         //FUNZIONCHE CHE MI CANCELLA DALL'ARRAY DI MESSAGES IL MESSAGGIO OGGETTO CON MESSAGEINDEX 
         deleteMessage(messageIndex) {
-            console.log(messageIndex);
             this.contacts[this.activeIndex].messages.splice(messageIndex, 1);
         },   
+
+        //FUNZIONE CHE PRENDE LA STRINGA DATA IN INGRESSO E DIVIDE ALLO SPAZIO RESTITUENDO SOLO L'ORARIO
+        dateToHourMin(index){
+                let messageDate = this.contacts[this.activeIndex].messages[index].date;
+
+                const dateTime = dt.fromFormat(messageDate, 'dd/MM/yyyy HH:mm:ss').toFormat("HH:mm");
+
+                return dateTime;
+                // let messageArray = message.date.split(" ");
+                // messageArray = messageArray[1].split(":");
+                // return messageArray[0] + ":" + messageArray[1]; 
+        },
+
+        showLastMessage(profileClicked) {
+            return profileClicked.messages[profileClicked.messages.length - 1].message
+        },
     }
 
 

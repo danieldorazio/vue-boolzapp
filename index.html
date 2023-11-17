@@ -83,10 +83,10 @@
                                 </button>
                                 <div class="profile-text">
                                     <h4>{{profile.name}}</h4>
-                                    <p>Ultimo messaggio...</p>  
+                                    <p>{{showLastMessage(profile)}}</p>  
                                 </div>
                             </div>
-                            <div class="time">16:15</div>
+                            <div class="time">{{profile.messages[profile.messages.length - 1].date}}</div> <!--dateToHourMin(profile.messages.length - 1-->
                         </li>
                     </ul>
 
@@ -108,7 +108,7 @@
                             </button>
                             <div class="profile-text">
                                 <h4>{{contacts[activeIndex].name}}</h4>
-                                <p>Ultimo accesso oggi alle 16:26</p>  
+                                <p>{{`Ultimo accesso oggi alle ${dateToHourMin(contacts[activeIndex].messages.length - 1)}`}} </p>  <!--Ultimo accesso oggi alle 16:26-->
                             </div>
                         </div>
 
@@ -142,12 +142,12 @@
                                 </div>
                                 <div class="info-message">
                                     <p>Info messaggio</p>
-                                    <p @click="deleteMessage(index)">Cancella messaggio</p> 
+                                    <p @click.stop="deleteMessage(index)">Cancella messaggio</p> 
                                 </div>
                                 <p>
                                     {{message.message}}
                                 </p>
-                                <div class="time">16:50</div>
+                                <div class="time">{{dateToHourMin(index)}}</div>
                             </div>
                         </div>
                  
