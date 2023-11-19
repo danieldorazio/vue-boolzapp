@@ -290,6 +290,10 @@ createApp({
             console.log("CI SONO RIUSCITO GRAZIE NEO");
         },
 
+        //FUNZIONE CHE AGGIUNGE ALLA STRINGA DI INVIO LA EMOJI CLICCATA
+        sendEmoji(myEmoji) {
+            this.newMessage += myEmoji;
+        }
 
     }
 

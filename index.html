@@ -161,7 +161,7 @@
                             <div>  <!--@click.stop="toggoleValueEmoji"-->
                                 <div id="emoji" :value ="valueEmoji" :class="valueEmoji ? 'd-inline' :'d-none'" class="emoji-container">
                                     <ul class="emoji-list">
-                                        <li v-for ="(emoji, index) in emoji">{{emoji}}</li>
+                                        <li v-for ="(emoji, index) in emoji" @click.stop="sendEmoji(emoji)">{{emoji}}</li>
                                     </ul>
                                 </div>
                                 <button id="emoji-btn" class='glowing-btn icons' @click.stop="toggoleValueEmoji"> <!--@click="addShowClass"-->
@@ -177,7 +177,7 @@
                         <!-- FOOTER-MICROPHONO -->
                         <div class="footer-registration">
                             <details>
-                                <summary>
+                                <summary @click.stop="valueEmoji = false">
                                 </summary>
                                 <div class="det-main flex">
                                     <button class="icons">
