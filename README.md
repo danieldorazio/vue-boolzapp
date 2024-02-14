@@ -1,33 +1,132 @@
-**Milestone 1**
-[X] Replica della grafica con la possibilità di avere messaggi scritti dall’utente (verdi) e
-dall’interlocutore (bianco) assegnando due classi CSS diverse
-[X] Visualizzazione dinamica della lista contatti: tramite la direttiva v-for, visualizzare
-nome e immagine di ogni contatto
+# Boolzapp Layout - Layout resposive di una Webapp
 
-**Milestone 2**
-[X] Visualizzazione dinamica dei messaggi: tramite la direttiva v-for, visualizzare tutti i
-messaggi relativi al contatto attivo all’interno del pannello della conversazione
-[X] Click sul contatto mostra la conversazione del contatto cliccato
+Questa è una soluzione per eseguire questo esercizio puramente dal lato visivo con il solo uso di HTML, CSS e Javascript Plain .
 
-**Milestone 3**
-[X] Aggiunta di un messaggio: l’utente scrive un testo nella parte bassa e digitando
-“enter” il testo viene aggiunto al thread sopra, come messaggio verde
-[X] Risposta dall’interlocutore: ad ogni inserimento di un messaggio, l’utente riceverà
-un “ok” come risposta, che apparirà dopo 1 secondo.
+## Sommario
 
-**Milestone 4**
-[X] Ricerca utenti: scrivendo qualcosa nell’input a sinistra, vengono visualizzati solo i
-contatti il cui nome contiene le lettere inserite (es, Marco, Matteo Martina -> Scrivo
-“mar” rimangono solo Marco e Martina)
+- [Panoramica](#Panoramica)
+  - [La sfida](#La-sfida)
+  - [Screenshot](#screenshot)
+- [Il mio processo](#il-mio-processo)
+  - [Osservazioni](#osservazioni)
+  - [Costruito con](#costruito-con)
+  
 
-**Milestone 5 - opzionale**
-[X] Cancella messaggio: cliccando sul messaggio appare un menu a tendina che
-permette di cancellare il messaggio selezionato
-[X] Visualizzazione ora e ultimo messaggio inviato/ricevuto nella lista dei contatti
+## Panoramica
 
-**Bonus** 
+### La sfida
 
-[X] Evitare che l'utente possa inviare un messaggio vuoto o composto solamente da spazi
-+ Cambiare icona in basso a destra (a fianco all'input per scrivere un nuovo messaggio) finché l'utente sta scrivendo: di default si visualizza l'icona del microfono, quando l'input non è vuoto si visualizza l'icona dell'aeroplano. Quando il messaggio è stato inviato e l'input si svuota, si torna a visualizzare il microfono. 
-+ Inviare quindi il messaggio anche cliccando sull'icona dell'aeroplano
-predisporre una lista di frasi e/o citazioni da utilizzare al posto della risposta "ok:" quando il pc risponde, anziché scrivere "ok", scegliere una frase random dalla lista e utilizzarla come testo del messaggio di risposta del pc
+Il layout di questo esercizio è diverso da classiche pagine web: il contenuto della pagina non potrà mai uscire dalla viewport, proprio come una app!
+In allegato troverete le screenshot per vedere il layout anche nelle versioni responsive.
+
+### Screenshot
+
+**Layout Desktop**
+![](design/screenshot-991.png)
+
+
+**Layout Tablet**
+![](design/screenshot-540.png)
+
+
+**Layout Mobile**
+![](design/screenshot.png)
+
+
+## Il mio processo
+Per prima cosa costruisco il layout responsive di base senza stili.
+Ho implementato le varie sezioni con lo stile. 
+Successivamente ho aggiunto le transizioni e i contenuti all'hover.
+Ho implementato la dark mode utilizzando le media (prefers-color-scheme).
+In fine ho implementato la logica con Javascript.
+
+## Osservazioni
+Molto interessante il comportamento della sezione FOOTER-REGISTRATION, ho voluto utilizzare e stilizzare un details tag utilizzando la proprietà open e il **selettore avanzato css "has"**, riscontrando la **corretta esecuzione in Chrome** ma il **mancato funzionamento in Firefox**
+
+**Sezione html Footer-registration**
+```html
+<div class="footer-registration">
+    <details>
+        <summary>
+        </summary>
+        <div class="det-main flex">
+            <button class="icons">
+                <i class="fa-solid fa-trash"></i>
+            </button>
+            <div>
+                timer 
+            </div>
+            <div>..........</div>
+            <button class="icons">
+                <i class="fa-solid fa-pause"></i>
+            </button>
+            <button class="icons">
+                <i class="fa-regular fa-paper-plane"></i>
+            </button>
+        </div>
+    </details>
+</div>
+```
+
+**Sezione css Footer-registration**
+```css
+
+details {
+   justify-content: space-between;
+   align-items: center;
+   position: relative;
+}
+
+summary {
+    display: block;
+}
+
+summary:after  {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    content: "\f130";
+    font-size: 1.2rem;
+    color: var(--color-gray-icons-footer);
+    font-family: 'FontAwesome';
+    cursor: pointer;
+}
+
+summary:hover:after { 
+    color: var(--color-microphone-hover);
+    background-color: var(--glow-color);
+}
+
+.det-main.flex {  
+    width: 100%;
+    align-items: center;
+    position: absolute;
+    gap: .5rem;
+    right: 200px;
+    bottom: 2px;
+}
+
+.footer-registration .icons {
+    margin: 5px;
+}
+
+footer:has(details[open]) .footer-text form.text {
+    display: none;
+    /*per variare la lunghezza */
+   /* width: calc(100% - 275px); */
+}
+
+footer:has(details[open]) .footer-text button.glowing-btn {
+    display: none;
+}
+```
+
+### Costruito con
+
+- Semantica HTML5 markup
+- CSS Flexbox
+- Desktop-first workflow
+- Javascript Plain
